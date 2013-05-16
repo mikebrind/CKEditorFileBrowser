@@ -1,0 +1,36 @@
+﻿@{
+    
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>CKEditor File Browser FOR ASP.NET Web Pages</title>
+        <link href="~/Content/StyleSheet.css" type="text/css" rel="stylesheet" />
+        <script type="text/javascript" src="/Scripts/jquery.js"></script>
+        <script type="text/javascript" src="/Scripts/ckeditor/ckeditor.js"></script>
+        <script>
+            $(function () {
+                CKEDITOR.replace('Content', {
+                    filebrowserBrowseUrl: '/FileBrowser2',
+                    filebrowserWindowWidth: 800,
+                    filebrowserWindowHeight: 600
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div id="form">
+            <form method="post">
+                <div>
+                    @Html.TextArea("Content")
+                </div>
+                <div>
+                    <input type="submit" />
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

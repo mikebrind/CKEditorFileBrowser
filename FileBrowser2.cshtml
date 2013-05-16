@@ -1,0 +1,32 @@
+﻿@{
+    Layout = null;
+    var media = new DirectoryInfo(Server.MapPath("~/Media"));
+}
+<html>
+    <head>
+        <title>Media Browser</title>
+        <link href="~/Content/StyleSheet.css" type="text/css" rel="stylesheet" />
+        <script src="/Scripts/jquery.js" type="text/javascript"></script>
+        <script src="/Scripts/ckeditor/ckeditor.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            var funcNum = @(Request["CKEditorFuncNum"] + ";")
+                $('#fileExplorer').on('click', 'img', function () {
+                    var fileUrl = '/Media/' + $(this).attr('title');
+                    window.opener.CKEDITOR.tools.callFunction(funcNum, fileUrl);
+                    window.close();
+                }).hover(function() {
+                    $(this).css('cursor', 'pointer');
+                });
+            });
+        </script>
+    </head>
+    <body>
+       <div id="fileExplorer">
+       @foreach (var file in media.GetFilesByExtensions(".png", ".gif", ".jpg")) {
+            <div class="thumbnail">
+                <img src="/Thumb/?image=@file.Name" alt="thumb" title="Media/@file.Name" />
+            </div>
+        }
+       </div>
+    </body>
+</html>
