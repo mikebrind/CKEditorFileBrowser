@@ -1,0 +1,9 @@
+﻿@{
+    Layout = null;
+    var directory = new DirectoryInfo(Path.Combine(Server.MapPath("~/Media"), Request["directory"]));
+}
+@foreach (var file in directory.GetFilesByExtensions(".png", ".gif", ".jpg")) {
+    <div class="thumbnail">
+        <img src="/Thumb/?image=@directory.Name\@file.Name" alt="thumb" title="@directory.Name/@file.Name" />
+    </div>
+}
